@@ -1,0 +1,702 @@
+<!--
+slidedeck: A modification of the Google IO 2012 HTML5 slide template
+URL: https://github.com/rmcgibbo/slidedeck
+
+Based on https://github.com/francescolaffi/elastic-google-io-slides, and
+ultimately:
+
+Google IO 2012 HTML5 Slide Template
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Workshop GO</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/custom.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides", src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js"></script>
+
+
+  <!-- MathJax support  -->
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    showProcessingMessages: false,
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    TeX: {
+      extensions: ["color.js"]
+    },
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+  </script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <div style="display:hidden">
+  \[
+    \definecolor{data}{RGB}{18,110,213}
+    \definecolor{unknown}{RGB}{217,86,16}
+    \definecolor{learned}{RGB}{175,114,176}
+  \]
+  </div>
+
+</head>
+
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+<slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+
+    <h1><img height=300 src=figures/golang.png /></h1>
+    <h2> Workshop GO</h2>
+    <p> Emile Vauge</p>
+  </hgroup>
+</slide>
+
+
+<slide  >
+  
+    <hgroup>
+      <h2>Setup</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>On GitHub, fork <a href="https://github.com/emilevauge/go-lyra">https://github.com/emilevauge/go-lyra</a></li>
+<li>Go to <a href="http://c9.io">http://c9.io</a></li>
+<li>Sign in using your GitHub account</li>
+<li>In Cloud9, edit this repository</li>
+<li>Let's code !</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>GO in few words</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>designed by Google (Robert Griesemer, Rob Pike, and Ken Thompson)</li>
+<li>open source</li>
+<li>commonly called <strong>golang</strong></li>
+<li>simple, productive, readable</li>
+<li>a modern take on C</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>more words...</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>fast (compile, run)</li>
+<li>garbage collected</li>
+<li>strongly typed</li>
+<li>statically linked binaries</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Where is the catch?</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>still early (1.0 in March 2012)</li>
+<li>dependencies management</li>
+<li>no generics (yet)</li>
+<li>not really OOP</li>
+<li>lack of powerful IDE</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Here and there</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Google (obviously)</li>
+<li>Docker</li>
+<li>Twitter</li>
+<li>AirBnB</li>
+<li>SoundCloud</li>
+<li>Netflix</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Tools</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li><code>go build</code>: which builds Go binaries</li>
+<li><code>go test</code>: for unit testing and microbenchmarks</li>
+<li><code>go fmt</code>: for formatting code</li>
+<li><code>go run</code>: a shortcut for building and executing code</li>
+<li><code>godoc</code>: for displaying documentation or serving it via HTTP</li>
+<li><code>go generate</code>: a standard way to invoke code generators</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Hello, Playground!</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p><a href="http://play.golang.org/">http://play.golang.org/</a></p>
+<pre class="prettyprint" data-lang="go">
+package main
+
+import "fmt"
+
+func main() {
+  fmt.Println("Hello, playground")
+}
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Main function</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Every go program has a main() function</li>
+<li>This is where execution starts</li>
+</ul>
+<pre class="prettyprint" data-lang="go">
+package main
+
+func main() {
+  // Your program starts here
+}
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Output</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>fmt is a core package (means “format”)</li>
+<li>pronounced "fumpt" (weird)</li>
+</ul>
+<pre class="prettyprint" data-lang="go">
+package main
+
+import "fmt"
+
+func main() {
+  fmt.Println("Hello Lyra!")
+}
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Exercise `1_output`</h2>
+      <h3></h3>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Variables</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Define</li>
+</ul>
+<pre class="prettyprint" data-lang="go">
+var myVar string
+</pre>
+
+<ul>
+<li>Initialize</li>
+</ul>
+<pre class="prettyprint" data-lang="go">
+var myVar string
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Type Inference</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Define and Initialize</li>
+</ul>
+<pre class="prettyprint" data-lang="go">
+var myVar string
+</pre>
+
+<ul>
+<li>Initialize</li>
+</ul>
+<pre class="prettyprint" data-lang="go">
+myVar := "Hello"
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Functions</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="go">
+func withArgs(a int, b string) int {
+    return 3
+}
+
+result := withArgs(3, "Hello")
+</pre>
+
+<pre class="prettyprint" data-lang="go">
+func withMultipleReturns() (string, error) {
+  return "Hello", nil
+}
+
+s, err := withMultipleReturns()
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Exercise `4_returns`</h2>
+      <h3></h3>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Structs</h2>
+      <h3>Define</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="go">
+type Person struct {
+  Name string
+  Age  int
+}
+
+p := Person{
+  Name: "Greg",
+  Age:  25,
+}
+
+
+fmt.Println(p.Name)
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Structs</h2>
+      <h3>Access</h3>
+    </hgroup>
+    <article ><ul>
+<li>public Properties Are Uppercase</li>
+</ul>
+<p><em>accessible to anything</em></p>
+<ul>
+<li>private properties are lowercase</li>
+</ul>
+<p><em>only accessible via methods</em></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Structs</h2>
+      <h3>Instantiation</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="go">
+type Person struct {
+  Name string
+  Age  int
+}
+
+p := Person{
+  Name: "Greg",
+  Age:  25,
+}
+
+
+fmt.Println(p.Name)
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Structs</h2>
+      <h3>Methods</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="go">
+type Person struct {
+  Name   string
+  Age    int
+}
+
+func (p *Person) CanEnterPub() bool {
+    return p.Age >= 19
+}
+
+
+person.CanEnterPub()
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Exercise `6_methods`</h2>
+      <h3></h3>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>GoRoutines</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Goroutines are lightweight threads of execution</p>
+<ul>
+<li>executed concurrently</li>
+<li>supports &gt; 100,000 goroutines</li>
+<li>automatically distributes load across CPUs</li>
+<li>Worry free!</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>GoRoutines</h2>
+      <h3>How?</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="go">
+doSomething()
+</pre>
+
+<pre class="prettyprint" data-lang="go">
+go doSomething()
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Channels</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Goroutines communicate via channels: one-way pipes
+Operations:</p>
+<ul>
+<li>Push to channel</li>
+<li>Listen to channel</li>
+</ul>
+<p>Channels have types too:</p>
+<ul>
+<li>var chan int</li>
+<li>var chan string</li>
+<li>var chan map[string]MyStruct</li>
+</ul>
+<p>Use channels to share state, for control flow</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Channels</h2>
+      <h3>Pushing</h3>
+    </hgroup>
+    <article ><ul>
+<li>
+<p>Use <code>make()</code> to create a channel
+<pre class="prettyprint" data-lang="go">
+var channel := make(chan int)
+</pre></p>
+</li>
+<li>
+<p>Push to a channel with <code>&lt;-</code>
+<pre class="prettyprint" data-lang="go">
+channel &lt;- 5
+channel &lt;- 3
+</pre></p>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Channels</h2>
+      <h3>Listening</h3>
+    </hgroup>
+    <article ><ul>
+<li>Use select to wait (block) for a single message</li>
+<li>
+<p>Similar syntax to case
+<pre class="prettyprint" data-lang="go">
+select {
+case i &lt;- channel:
+  fmt.Printf("Got message %d", i)
+}
+</pre></p>
+</li>
+<li>
+<p>Watch for multiple messages using range
+<pre class="prettyprint" data-lang="go">
+for i := range channel {
+  fmt.Printf("Got message %d", i)
+}
+</pre></p>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Exercise `9_channels`</h2>
+      <h3></h3>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Loops</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="go">
+// for loop
+for i := 0; i < 10; i++ {...}
+
+// while loop
+for i < 10 {...}
+
+
+// infinite loop
+for {...}
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Web</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="go">
+package main
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
+}
+
+func main() {
+    http.HandleFunc("/", handler)
+    http.ListenAndServe(":8080", nil)
+}
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Exercise `12_web`</h2>
+      <h3></h3>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Gorilla</h2>
+      <h3>Advanced routing</h3>
+    </hgroup>
+    <article ><ul>
+<li>URL host</li>
+<li>path</li>
+<li>path prefix</li>
+<li>schemes</li>
+<li>header</li>
+<li>query values</li>
+<li>HTTP methods</li>
+<li>custom matchers</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Gorilla</h2>
+      <h3>Example</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="go">
+func main() {
+    r := mux.NewRouter()
+    r.HandleFunc("/", HomeHandler)
+    r.HandleFunc("/products", ProductsHandler)
+    r.HandleFunc("/articles", ArticlesHandler)
+    http.ListenAndServe(":8080", r)
+}
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Gorilla</h2>
+      <h3>Variables</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="go">
+r := mux.NewRouter()
+r.HandleFunc("/products/{key}", ProductHandler)
+r.HandleFunc("/articles/{category}/", ArticlesCategoryHandler)
+r.HandleFunc("/articles/{category}/{id:[0-9]+}", ArticleHandler)
+</pre>
+
+<pre class="prettyprint" data-lang="go">
+vars := mux.Vars(request)
+category := vars["category"]
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Gorilla</h2>
+      <h3>Domain, Dynamic sub-domain</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="go">
+r := mux.NewRouter()
+// Only matches if domain is "www.example.com".
+r.Host("www.example.com")
+// Matches a dynamic subdomain.
+r.Host("{subdomain:[a-z]+}.domain.com")
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Exercise `13_rest`</h2>
+      <h3></h3>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <!-- <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside> -->
+  <article class="flexbox vleft auto-fadein">
+    <h2> Thank you!</h2>
+    <p></p>
+  </article>
+  <p data-config-contact class="auto-fadein"> <a href="https://twitter.com/emilevauge">@emilevauge</a></p>
+  </p>
+</slide>
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
