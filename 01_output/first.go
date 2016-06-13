@@ -3,5 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Hello, Lyra !")
+    var myVar string
+    myVar = "Hello"
+    world := " World"
+	fmt.Println(myVar + world)
 }
