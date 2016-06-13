@@ -9,7 +9,11 @@ type Computer struct {
 }
 
 func (c *Computer) Describe() {
-    fmt.Println(*c)
+    fmt.Printf("Brand: %s, Model: %s, Price: %d €\n", c.Brand, c.Model, c.Price)
+}
+
+func (c *Computer) DoublePrice() {
+    c.Price = c.Price * 2
 }
 
 // TODO: Create a "Describe" method that prints all the properties
@@ -18,8 +22,10 @@ func main() {
     computer := Computer{
         Brand: "Apple",
         Model: "Macbook",
-        Price: 1000,
+        Price: 3500,
     }
 
+    computer.Describe()
+    computer.DoublePrice()
     computer.Describe()
 }
