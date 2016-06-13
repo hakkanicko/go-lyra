@@ -8,6 +8,10 @@ type Computer struct {
     Price int
 }
 
+func (c *Computer) Describe() {
+    fmt.Println(*c)
+}
+
 // TODO: Create a "Describe" method that prints all the properties
 
 func main() {
